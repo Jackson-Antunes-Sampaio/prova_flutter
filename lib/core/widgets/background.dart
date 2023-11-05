@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:prova_flutter/core/helpers/webview/url_launche.dart';
+import 'package:prova_flutter/core/helpers/webview/webview.dart';
 import 'package:prova_flutter/core/utils/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class BackgroundWidget extends StatelessWidget {
-  const BackgroundWidget({super.key, required this.child});
+  BackgroundWidget({super.key, required this.child}) {
+    web = UrlLaunchAdapter();
+  }
   final Widget child;
+  late final WebViwe web;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +28,7 @@ class BackgroundWidget extends StatelessWidget {
           children: [
             Expanded(child: child),
             TextButton(
-              onPressed: () async {
-                var url = Uri.parse(privatePolicy);
-                if (!await launchUrl(url)) {
-                  throw Exception('Could not launch $url');
-                }
-              },
+              onPressed: () async => web.openUrl(privatePolicy),
               child: const Text("Política de Privacidade"),
             ),
             const SizedBox(height: 10)
