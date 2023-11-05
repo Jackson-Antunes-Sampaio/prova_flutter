@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Desafio Flutter',
       debugShowCheckedModeBanner: false,
       routerConfig: GoRouter(
-        initialLocation: '/information',
+        initialLocation: '/auth',
         routes: [
           GoRoute(
             path: '/auth',

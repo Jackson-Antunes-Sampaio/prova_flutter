@@ -16,5 +16,6 @@ Este desafio consiste em desenvolver uma aplicação mobile utilizando o framewo
 ## Recursos e Funcionalidades
 - [✅] Tela Login 
 - [✅] Recurso login
-- [ ] Tela de captura de informações
-- [ ] Recurso de informações
+- [✅] Tela de captura de informações
+- [✅] Recurso de informações
+- [ ] Test de widget
