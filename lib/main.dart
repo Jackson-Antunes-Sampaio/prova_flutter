@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prova_flutter/core/utils/constants.dart';
 import 'package:prova_flutter/features/auth/presentation/screens/auth_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'package:prova_flutter/features/information/screens/information_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +14,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Desafio Flutter',
       debugShowCheckedModeBanner: false,
+      routerConfig: GoRouter(
+        initialLocation: '/information',
+        routes: [
+          GoRoute(
+            path: '/auth',
+            builder: (context, state) => const AuthScreen(),
+          ),
+          GoRoute(
+            path: '/information',
+            builder: (context, state) => const InformationScreen(),
+          ),
+        ],
+      ),
       theme: ThemeData(
         useMaterial3: true,
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -38,7 +53,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const AuthScreen(),
     );
   }
 }

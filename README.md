@@ -14,7 +14,7 @@ Este desafio consiste em desenvolver uma aplicação mobile utilizando o framewo
 3. Teste a aplicação para garantir seu correto funcionamento.
 
 ## Recursos e Funcionalidades
-- [ ] Tela Login 
-- [ ] Recurso login
+- [✅] Tela Login 
+- [✅] Recurso login
 - [ ] Tela de captura de informações
 - [ ] Recurso de informações

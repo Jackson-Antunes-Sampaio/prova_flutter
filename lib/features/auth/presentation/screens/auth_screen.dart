@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:go_router/go_router.dart';
 import 'package:prova_flutter/features/auth/presentation/store/auth_store.dart';
 import 'package:prova_flutter/features/auth/presentation/widgets/custom_textfield.dart';
 
@@ -41,7 +42,7 @@ class _AuthScreenState extends State<AuthScreen> {
               return ElevatedButton(
                 onPressed: store.validationForm
                     ? () {
-                        print("jasj");
+                        context.push('/information');
                       }
                     : null,
                 child: const Text("Entrar"),
