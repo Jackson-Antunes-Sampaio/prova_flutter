@@ -9,7 +9,7 @@ Este desafio consiste em desenvolver uma aplicação mobile utilizando o framewo
 
 |            Login           |            Informação              |
 |:--------------------------------------------:|:-----------------------------------------:|
-|    <img src="assets/login.png" width=80%>     | <img src="assets/information.png" width=80%> |
+|    <img src="assets/auth.png" width=80%>     | <img src="assets/information.png" width=80%> |
 
 ## Requisitos
 - Flutter instalado
