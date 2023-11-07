@@ -38,6 +38,7 @@ class _InformationScreenState extends State<InformationScreen> {
                       itemBuilder: (context, index) {
                         final information = store.informations[index];
                         return Container(
+                          key: Key("$index-container-$information"),
                           margin: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
                           decoration: const BoxDecoration(
@@ -60,6 +61,7 @@ class _InformationScreenState extends State<InformationScreen> {
                                 ),
                               ),
                               IconButton(
+                                key: Key("$index-edit-$information"),
                                 onPressed: () async {
                                   final resp = await _dialogEdit(information);
                                   if (resp != null ||
@@ -70,6 +72,7 @@ class _InformationScreenState extends State<InformationScreen> {
                                 icon: const Icon(Icons.edit),
                               ),
                               IconButton(
+                                key: Key("$index-delete-$information"),
                                 onPressed: () async {
                                   final resp = await _dialogDelete();
                                   if (resp == true) {
@@ -95,11 +98,13 @@ class _InformationScreenState extends State<InformationScreen> {
               ),
               const SizedBox(height: 30),
               TextFormField(
+                key: const Key('infoTextField'),
                 onFieldSubmitted: (value) async {
                   await store.saveInformation().then((value) {
                     if (value != null) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(value)));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          key: const Key('showSnackBar'),
+                          content: Text(value)));
                     }
                   });
                 },

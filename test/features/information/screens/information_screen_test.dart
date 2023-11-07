@@ -3,21 +3,64 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:prova_flutter/features/information/screens/information_screen.dart';
 
 void main() {
-  testWidgets('Teste da segunda tela', (WidgetTester tester) async {
-    await tester.pumpWidget(const MaterialApp(home: InformationScreen()));
+  const String infoTextField = 'infoTextField';
+  const String showSnackBar = 'showSnackBar';
 
-    expect(find.byKey(const Key('infoTextField')), findsOneWidget);
-    expect(find.byKey(const Key('submitButton')), findsOneWidget);
-    expect(
-        find.byType(Card), findsOneWidget); // Verifica se o Card está presente
+  Future<void> loadPage(WidgetTester tester) async {
+    MaterialApp materialApp = const MaterialApp(home: InformationScreen());
+    await tester.pumpWidget(materialApp);
+  }
 
-    await tester.enterText(
-        find.byKey(const Key('infoTextField')), 'Nova informação');
-    await tester.tap(find.byKey(const Key('submitButton')));
+  testWidgets('Should call verify items screen', (WidgetTester tester) async {
+    await loadPage(tester);
 
-    expect(find.text('Nova informação'),
-        findsOneWidget); // Verifica se a informação foi adicionada à lista
+    expect(find.byKey(const Key(infoTextField)), findsOneWidget);
+    expect(find.byType(Card), findsOneWidget);
+  });
 
-    // Outros testes de interação, como editar uma informação na lista e verificar se a caixa de diálogo para edição é exibida corretamente, etc.
+  testWidgets('Should call error text', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    await tester.enterText(find.byKey(const Key(infoTextField)), '');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pump();
+
+    expect(find.byKey(const Key(showSnackBar)), findsOneWidget);
+  });
+
+  testWidgets('Should call success text', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    await tester.enterText(find.byKey(const Key(infoTextField)), 'information');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pump();
+
+    expect(find.byKey(const Key(showSnackBar)), findsNothing);
+  });
+
+  testWidgets('Should call success edit ', (WidgetTester tester) async {
+    await loadPage(tester);
+    String text = 'information';
+    await tester.enterText(find.byKey(const Key(infoTextField)), text);
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pump();
+
+    await tester.tap(find.byKey(Key("0-edit-$text")));
+    await tester.pump();
+
+    expect(find.text('Atenção'), findsOneWidget);
+  });
+
+  testWidgets('Should call success delete ', (WidgetTester tester) async {
+    await loadPage(tester);
+    String text = 'information';
+    await tester.enterText(find.byKey(const Key(infoTextField)), text);
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pump();
+
+    await tester.tap(find.byKey(Key("0-delete-$text")));
+    await tester.pump();
+
+    expect(find.text('Deseja Excluir esse item?'), findsOneWidget);
   });
 }
