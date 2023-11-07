@@ -25,6 +25,7 @@ class _AuthScreenState extends State<AuthScreen> {
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.3),
             CustomTextField(
+              key: const Key('userTextField'),
               label: 'Usuário',
               prefixIcon: Icons.person,
               onChanged: store.setUser,
@@ -32,6 +33,7 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             const SizedBox(height: 25),
             CustomTextField(
+              key: const Key('passwordTextField'),
               label: 'Senha',
               prefixIcon: Icons.lock,
               onChanged: store.setPassword,
@@ -40,6 +42,7 @@ class _AuthScreenState extends State<AuthScreen> {
             const SizedBox(height: 25),
             Observer(builder: (context) {
               return ElevatedButton(
+                key: const Key('enterButton'),
                 onPressed: store.validationForm
                     ? () {
                         context.push('/information');
