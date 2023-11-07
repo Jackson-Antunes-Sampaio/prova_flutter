@@ -97,29 +97,32 @@ class _InformationScreenState extends State<InformationScreen> {
                 ),
               ),
               const SizedBox(height: 30),
-              TextFormField(
-                key: const Key('infoTextField'),
-                onFieldSubmitted: (value) async {
-                  await store.saveInformation().then((value) {
-                    if (value != null) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          key: const Key('showSnackBar'),
-                          content: Text(value)));
-                    }
-                  });
-                },
-                onChanged: store.setInputText,
-                decoration: const InputDecoration(
-                    label: Center(
-                      child: Text(
-                        "Digite seu texto",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 21),
+              Observer(builder: (context) {
+                return TextFormField(
+                  key: const Key('infoTextField'),
+                  onFieldSubmitted: (value) async {
+                    await store.saveInformation().then((value) {
+                      if (value != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            key: const Key('showSnackBar'),
+                            content: Text(value)));
+                      }
+                    });
+                    setState(() {});
+                  },
+                  onChanged: store.setInputText,
+                  decoration: const InputDecoration(
+                      label: Center(
+                        child: Text(
+                          "Digite seu texto",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 21),
+                        ),
                       ),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.never),
-              ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never),
+                );
+              }),
               const SizedBox(height: 30),
             ],
           ),
