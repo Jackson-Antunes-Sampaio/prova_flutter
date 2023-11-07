@@ -25,4 +25,5 @@ Este desafio consiste em desenvolver uma aplicação mobile utilizando o framewo
 - [x] Tela de captura de informações
 - [x] Recurso de informações
 - [x] Test de widget
-- [ ] Tema
+- [x] Tema
+- [x] Ci

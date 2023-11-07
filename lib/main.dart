@@ -32,6 +32,10 @@ class MyApp extends StatelessWidget {
       ),
       theme: ThemeData(
         useMaterial3: true,
+        colorScheme: ThemeData().colorScheme.copyWith(
+              primary: colorGreen,
+              secondary: colorBackgroundGreen,
+            ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: colorGreen,
