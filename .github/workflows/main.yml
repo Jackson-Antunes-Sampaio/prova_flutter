@@ -17,7 +17,7 @@ jobs:
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '2.x' # Substitua pela versão desejada do Flutter
+        flutter-version: '3.13.6'
 
     - name: Get dependencies
       run: flutter pub get
@@ -37,7 +37,7 @@ jobs:
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '2.x' # Substitua pela versão desejada do Flutter
+        flutter-version: '3.13.6'
 
     - name: Get dependencies
       run: flutter pub get
