@@ -17,7 +17,7 @@ jobs:
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.13.6'
+        flutter-version: '2.x' # Substitua pela versão desejada do Flutter
 
     - name: Get dependencies
       run: flutter pub get
@@ -37,12 +37,16 @@ jobs:
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.13.6'
+        flutter-version: '2.x' # Substitua pela versão desejada do Flutter
 
     - name: Get dependencies
       run: flutter pub get
 
+    - name: Install lcov
+      run: sudo apt-get update && sudo apt-get install -y lcov
+
     - name: Run coverage
       run: |
         flutter test --coverage
+        lcov --capture --directory . --output-file coverage/lcov.info
         genhtml coverage/lcov.info -o coverage/html
